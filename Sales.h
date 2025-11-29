@@ -3,39 +3,40 @@
 
 #include <iostream>
 #include <string>
+#include "mobil.h"
 using namespace std;
 
-struct Mobil;
-struct RelasiM;
+typedef struct Sales *adrSales;
+typedef struct RelasiM *adrRelasiM;
 
 struct Sales {
     string idSales;
     string namaSales;
-    Sales *next;
-    RelasiM *child;   // daftar mobil yang dipromosikan sales ini
+    adrSales next;
+    adrRelasiM child;   // daftar mobil yang dipromosikan sales ini
 };
 
 struct RelasiM {
-    Mobil *mobil;
-    RelasiM *next;
+    adrMobil mobil;
+    adrRelasiM next;
 };
 
 struct ListChild {
-    Sales *first;
+    adrSales first;
 };
 
 // --- FUNCTION & PROCEDURE CHILD ---
 void createListChild(ListChild &L);
-Sales* createElemenChild(string id, string nama);
-void insertFirstChild(ListChild &L, Sales *C);
-void insertLastChild(ListChild &L, Sales *C);
-void insertAfterChild(Sales *prec, Sales *C);
+adrSales createElemenChild(string id, string nama);
+void insertFirstChild(ListChild &L, adrSales C);
+void insertLastChild(ListChild &L, adrSales C);
+void insertAfterChild(adrSales prec, adrSales C);
 
-void deleteFirstChild(ListChild &L, Sales *&C);
-void deleteLastChild(ListChild &L, Sales *&C);
-void deleteAfterChild(Sales *prec, Sales *&C);
+void deleteFirstChild(ListChild &L, adrSales &C);
+void deleteLastChild(ListChild &L, adrSales &C);
+void deleteAfterChild(adrSales prec, adrSales &C);
 
-Sales* findElemenChild(ListChild L, string id);
+adrSales findElemenChild(ListChild L, string id);
 void viewChild(ListChild L);
 
 #endif

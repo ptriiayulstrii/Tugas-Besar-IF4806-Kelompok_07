@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1764408801 source:c:\showroom\tugas-besar-if4806-kelompok_07\mobil.cpp
+	"mobil.h"
+
+1764411734 c:\showroom\tugas-besar-if4806-kelompok_07\mobil.h
+	<iostream>
+	<string>
+
+1764410153 source:c:\showroom\tugas-besar-if4806-kelompok_07\main.cpp
+	<iostream>
+	"mobil.h"
+	"sales.h"
+
+1764411888 c:\showroom\tugas-besar-if4806-kelompok_07\sales.h
+	<iostream>
+	<string>
+	"mobil.h"
+
+1764409738 source:c:\showroom\tugas-besar-if4806-kelompok_07\sales.cpp
+	"sales.h"
+
+1764411965 source:c:\showroom\tugas-besar-if4806-kelompok_07\main_userr.cpp
+	<iostream>
+	"mobil.h"
+	"sales.h"
+
+1764411665 source:c:\showroom\tugas-besar-if4806-kelompok_07\main_adminn.cpp
+	<iostream>
+	"mobil.h"
+	"sales.h"
+

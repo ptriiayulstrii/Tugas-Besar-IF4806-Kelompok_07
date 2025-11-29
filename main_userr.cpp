@@ -15,23 +15,31 @@ void userMenu(ListParent &LP, ListChild &LC) {
         cout << "Pilih: ";
         cin >> menu;
 
+        // 1. LIHAT MOBIL
         if (menu == 1) {
             viewParent(LP);
         }
 
+        // 2. LIHAT SALES
         else if (menu == 2) {
             viewChild(LC);
         }
 
+        // 3. LIHAT SALES YG PROMOSI MOBIL
         else if (menu == 3) {
             string id;
             cout << "ID Mobil: ";
             cin >> id;
 
-            Mobil *M = findElemenParent(LP, id);
+            adrMobil M = findElemenParent(LP, id);
+
             if (M != nullptr) {
                 cout << "Sales yang mempromosikan " << M->namaMobil << ":\n";
-                RelasiS *R = M->child;
+
+                adrRelasiS R = M->child;
+
+                if (R == nullptr) cout << "(Belum ada sales)\n";
+
                 while (R != nullptr) {
                     cout << "- " << R->sales->namaSales << endl;
                     R = R->next;
@@ -41,15 +49,21 @@ void userMenu(ListParent &LP, ListChild &LC) {
             }
         }
 
+        // 4. LIHAT MOBIL YANG DIPROMOSI SALES
         else if (menu == 4) {
             string id;
             cout << "ID Sales: ";
             cin >> id;
 
-            Sales *S = findElemenChild(LC, id);
+            adrSales S = findElemenChild(LC, id);
+
             if (S != nullptr) {
-                cout << "Mobil yang dipromosikan " << S->namaSales << ":\n";
-                RelasiM *R = S->child;
+                cout << "Mobil yang dipromosikan oleh " << S->namaSales << ":\n";
+
+                adrRelasiM R = S->child;
+
+                if (R == nullptr) cout << "(Belum ada mobil)\n";
+
                 while (R != nullptr) {
                     cout << "- " << R->mobil->namaMobil << endl;
                     R = R->next;

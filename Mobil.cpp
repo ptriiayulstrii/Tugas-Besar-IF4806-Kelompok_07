@@ -6,8 +6,8 @@ void createListParent(ListParent &L) {
 }
 
 // membuat elemen mobil
-Mobil* createElemenParent(string id, string nama) {
-    Mobil *P = new Mobil;
+adrMobil createElemenParent(string id, string nama) {
+    adrMobil P = new Mobil;
     P->idMobil = id;
     P->namaMobil = nama;
     P->next = nullptr;
@@ -15,28 +15,31 @@ Mobil* createElemenParent(string id, string nama) {
     return P;
 }
 
-void insertFirstParent(ListParent &L, Mobil *P) {
+void insertFirstParent(ListParent &L, adrMobil P) {
     P->next = L.first;
     L.first = P;
 }
 
-void insertLastParent(ListParent &L, Mobil *P) {
-    if (L.first == nullptr) insertFirstParent(L, P);
-    else {
-        Mobil *Q = L.first;
-        while (Q->next != nullptr) Q = Q->next;
+void insertLastParent(ListParent &L, adrMobil P) {
+    if (L.first == nullptr){
+        insertFirstParent(L, P);
+    } else {
+        adrMobil Q = L.first;
+        while (Q->next != nullptr) {
+                Q = Q->next;
+        }
         Q->next = P;
     }
 }
 
-void insertAfterParent(Mobil *prec, Mobil *P) {
+void insertAfterParent(adrMobil prec, adrMobil P) {
     if (prec != nullptr) {
         P->next = prec->next;
         prec->next = P;
     }
 }
 
-void deleteFirstParent(ListParent &L, Mobil *&P) {
+void deleteFirstParent(ListParent &L, adrMobil &P) {
     if (L.first != nullptr) {
         P = L.first;
         L.first = P->next;
@@ -44,18 +47,20 @@ void deleteFirstParent(ListParent &L, Mobil *&P) {
     }
 }
 
-void deleteLastParent(ListParent &L, Mobil *&P) {
-    if (L.first == nullptr) return;
-    else if (L.first->next == nullptr) deleteFirstParent(L, P);
-    else {
-        Mobil *Q = L.first;
+void deleteLastParent(ListParent &L, adrMobil &P) {
+    if (L.first == nullptr){
+        return;
+    } else if (L.first->next == nullptr) {
+        deleteFirstParent(L, P);
+    } else {
+        adrMobil Q = L.first;
         while (Q->next->next != nullptr) Q = Q->next;
         P = Q->next;
         Q->next = nullptr;
     }
 }
 
-void deleteAfterParent(Mobil *prec, Mobil *&P) {
+void deleteAfterParent(adrMobil prec, adrMobil &P) {
     if (prec != nullptr && prec->next != nullptr) {
         P = prec->next;
         prec->next = P->next;
@@ -63,17 +68,19 @@ void deleteAfterParent(Mobil *prec, Mobil *&P) {
     }
 }
 
-Mobil* findElemenParent(ListParent L, string id) {
-    Mobil *P = L.first;
+adrMobil findElemenParent(ListParent L, string id) {
+    adrMobil P = L.first;
     while (P != nullptr) {
-        if (P->idMobil == id) return P;
+        if (P->idMobil == id) {
+                return P;
+        }
         P = P->next;
     }
     return nullptr;
 }
 
 void viewParent(ListParent L) {
-    Mobil *P = L.first;
+    adrMobil P = L.first;
     while (P != nullptr) {
         cout << "- " << P->idMobil << " | " << P->namaMobil << endl;
         P = P->next;

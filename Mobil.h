@@ -5,37 +5,38 @@
 #include <string>
 using namespace std;
 
-struct Sales;      // forward declaration
-struct RelasiS;    // relasi Sales pada Mobil
+typedef struct Sales *adrSales;
+typedef struct RelasiS *adrRelasiS;
+typedef struct Mobil *adrMobil;
 
 struct Mobil {
     string idMobil;
     string namaMobil;
-    Mobil *next;
-    RelasiS *child;    // daftar sales yang mempromosikan mobil ini
+    adrMobil next;
+    adrRelasiS child;    // daftar sales yang mempromosikan mobil ini
 };
 
 struct RelasiS {
-    Sales *sales;
-    RelasiS *next;
+    adrSales sales;
+    adrRelasiS next;
 };
 
 struct ListParent {
-    Mobil *first;
+    adrMobil first;
 };
 
 // --- FUNCTION & PROCEDURE PARENT (DARI SLIDE) ---
 void createListParent(ListParent &L);
-Mobil* createElemenParent(string id, string nama);
-void insertFirstParent(ListParent &L, Mobil *P);
-void insertLastParent(ListParent &L, Mobil *P);
-void insertAfterParent(Mobil *prec, Mobil *P);
+adrMobil createElemenParent(string id, string nama);
+void insertFirstParent(ListParent &L, adrMobil P);
+void insertLastParent(ListParent &L, adrMobil P);
+void insertAfterParent(adrMobil prec, adrMobil P);
 
-void deleteFirstParent(ListParent &L, Mobil *&P);
-void deleteLastParent(ListParent &L, Mobil *&P);
-void deleteAfterParent(Mobil *prec, Mobil *&P);
+void deleteFirstParent(ListParent &L, adrMobil &P);
+void deleteLastParent(ListParent &L, adrMobil &P);
+void deleteAfterParent(adrMobil prec, adrMobil &P);
 
-Mobil* findElemenParent(ListParent L, string id);
+adrMobil findElemenParent(ListParent L, string id);
 void viewParent(ListParent L);
 
 #endif

@@ -23,11 +23,11 @@ int main() {
         cout << "Pilih: ";
         cin >> menu;
 
-        if (menu == 1)
+        if (menu == 1){
             adminMenu(LP, LC);
-        else if (menu == 2)
+        }else if (menu == 2){
             userMenu(LP, LC);
-
+        }
     } while (menu != 0);
 
     return 0;

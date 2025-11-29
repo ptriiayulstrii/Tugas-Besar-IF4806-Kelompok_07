@@ -5,7 +5,7 @@ void createListChild(ListChild &L) {
     L.first = nullptr;
 }
 
-Sales* createElemenChild(string id, string nama) {
+adrSales createElemenChild(string id, string nama) {
     Sales *C = new Sales;
     C->idSales = id;
     C->namaSales = nama;
@@ -14,28 +14,31 @@ Sales* createElemenChild(string id, string nama) {
     return C;
 }
 
-void insertFirstChild(ListChild &L, Sales *C) {
+void insertFirstChild(ListChild &L, adrSales C) {
     C->next = L.first;
     L.first = C;
 }
 
-void insertLastChild(ListChild &L, Sales *C) {
-    if (L.first == nullptr) insertFirstChild(L, C);
-    else {
-        Sales *Q = L.first;
-        while (Q->next != nullptr) Q = Q->next;
+void insertLastChild(ListChild &L, adrSales C) {
+    if (L.first == nullptr){
+        insertFirstChild(L, C);
+    } else {
+        adrSales Q = L.first;
+        while (Q->next != nullptr){
+            Q = Q->next;
+        }
         Q->next = C;
     }
 }
 
-void insertAfterChild(Sales *prec, Sales *C) {
+void insertAfterChild(adrSales prec, adrSales C) {
     if (prec != nullptr) {
         C->next = prec->next;
         prec->next = C;
     }
 }
 
-void deleteFirstChild(ListChild &L, Sales *&C) {
+void deleteFirstChild(ListChild &L, adrSales &C) {
     if (L.first != nullptr) {
         C = L.first;
         L.first = C->next;
@@ -43,18 +46,22 @@ void deleteFirstChild(ListChild &L, Sales *&C) {
     }
 }
 
-void deleteLastChild(ListChild &L, Sales *&C) {
-    if (L.first == nullptr) return;
-    else if (L.first->next == nullptr) deleteFirstChild(L, C);
-    else {
-        Sales *Q = L.first;
-        while (Q->next->next != nullptr) Q = Q->next;
+void deleteLastChild(ListChild &L, adrSales &C) {
+    if (L.first == nullptr){
+        return;
+    } else if (L.first->next == nullptr) {
+        deleteFirstChild(L, C);
+    } else {
+        adrSales Q = L.first;
+        while (Q->next->next != nullptr){
+            Q = Q->next;
+        }
         C = Q->next;
         Q->next = nullptr;
     }
 }
 
-void deleteAfterChild(Sales *prec, Sales *&C) {
+void deleteAfterChild(adrSales prec, adrSales &C) {
     if (prec != nullptr && prec->next != nullptr) {
         C = prec->next;
         prec->next = C->next;
@@ -62,17 +69,19 @@ void deleteAfterChild(Sales *prec, Sales *&C) {
     }
 }
 
-Sales* findElemenChild(ListChild L, string id) {
-    Sales *C = L.first;
+adrSales findElemenChild(ListChild L, string id) {
+    adrSales C = L.first;
     while (C != nullptr) {
-        if (C->idSales == id) return C;
+        if (C->idSales == id) {
+            return C;
+        }
         C = C->next;
     }
     return nullptr;
 }
 
 void viewChild(ListChild L) {
-    Sales *C = L.first;
+    adrSales C = L.first;
     while (C != nullptr) {
         cout << "- " << C->idSales << " | " << C->namaSales << endl;
         C = C->next;
